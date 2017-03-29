@@ -7,6 +7,15 @@ import os
 from time import sleep
 from RPi import GPIO as gpio
 
+gpio.setwarnings(False)
+gpio.setmode(gpio.BCM)
+# 我用的gpio1对应的bcm是18，这里根据自己的接法修改
+gpio.setup(16, gpio.OUT)
+pwm = gpio.PWM(16, 100)
+gpio.setwarnings(False)
+
+pwm.ChangeDutyCycle(100)
+
 def get_cpu_temperature():
 	return float(os.popen('vcgencmd measure_temp').readline().replace("temp=", "").replace("'C\n", ""))
 
