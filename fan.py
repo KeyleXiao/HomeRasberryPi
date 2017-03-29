@@ -4,13 +4,16 @@ __author__ = "Haddy Yang"
 __date__ = "2016-06-30"
 __blog__ = "http://yshblog.com"
 
+import os
 from RPi import GPIO as gpio  # 注意RPi中的i是小写的
-import time
+from time import sleep
 
 
 def get_cpu_temperature():
 	return float(os.popen('vcgencmd measure_temp').readline().replace("temp=", "").replace("'C\n", ""))
 
+
+port = 16
 
 
 # 监控温度，控制风扇开关
@@ -24,9 +27,8 @@ def check_temp(port):
 	# 标记风扇开关状态
 	is_close = True
 
-	try:
-		while True:
-			temp = get_cpu_temperature()
+	while True:
+		temp = get_cpu_temperature()
 		if is_close:
 			# 温度大于等于50时，打开引脚，输出电信号
 			if temp >= 50:
@@ -39,10 +41,8 @@ def check_temp(port):
 				is_close = True
 
 		# 休眠1秒
-		time.sleep(1)
+		sleep(1)
 		print("temp:%s, fan is close:%s" % (temp, is_close))
 
-if __name__ == '__main__':
-	port = 16
-	check_temp(port)
-	
+
+check_temp(port)
