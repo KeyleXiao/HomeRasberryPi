@@ -13,7 +13,7 @@ gpio.setmode(gpio.BCM)
 gpio.setup(16, gpio.OUT)
 pwm = gpio.PWM(16, 100)
 gpio.setwarnings(False)
-pwm.ChangeDutyCycle(200)
+pwm.ChangeDutyCycle(100)
 
 def get_cpu_temperature():
 	return float(os.popen('vcgencmd measure_temp').readline().replace("temp=", "").replace("'C\n", ""))
