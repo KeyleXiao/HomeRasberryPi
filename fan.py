@@ -31,7 +31,7 @@ def check_temp(port):
 			temp = get_cpu_temp()
 		if is_close:
 			# 温度大于等于50时，打开引脚，输出电信号
-			if temp >= 50:
+			if temp >= 10:
 				gpio.output(port, 1)
 				is_close = False
 		else:
