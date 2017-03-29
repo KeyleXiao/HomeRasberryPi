@@ -10,7 +10,7 @@ def get_cpu_temperature():
 	return float(os.popen('vcgencmd measure_temp').readline().replace("temp=", "").replace("'C\n", ""))
 
 
-port = 4
+port = 16
 
 
 def check_temp(port):
