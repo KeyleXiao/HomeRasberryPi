@@ -8,11 +8,9 @@ from RPi import GPIO as gpio  # 注意RPi中的i是小写的
 import time
 
 
-# 获取cpu的温度
-def get_cpu_temp():
-	with open("/sys/class/thermal/thermal_zone0/temp", 'r') as f:
-		temp = float(f.read()) / 1000
-	return temp
+def get_cpu_temperature():
+	return float(os.popen('vcgencmd measure_temp').readline().replace("temp=", "").replace("'C\n", ""))
+
 
 
 # 监控温度，控制风扇开关
@@ -28,7 +26,7 @@ def check_temp(port):
 
 	try:
 		while True:
-			temp = get_cpu_temp()
+			temp = get_cpu_temperature()
 		if is_close:
 			# 温度大于等于50时，打开引脚，输出电信号
 			if temp >= 50:
@@ -42,11 +40,7 @@ def check_temp(port):
 
 		# 休眠1秒
 		time.sleep(1)
-		print
-		"temp:%s, fan is close:%s" % (temp, is_close)
-	except Exception, e:
-		gpio.cleanup()
-
+		print("temp:%s, fan is close:%s" % (temp, is_close))
 
 if __name__ == '__main__':
 	port = 16
