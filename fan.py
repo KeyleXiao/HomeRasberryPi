@@ -45,3 +45,4 @@ def check_temp(port):
 if __name__ == '__main__':
 	port = 16
 	check_temp(port)
+	
