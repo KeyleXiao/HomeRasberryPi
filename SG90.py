@@ -10,7 +10,9 @@ import atexit
 atexit.register(GPIO.cleanup)
 
 servopin = 16
-GPIO.setmode(GPIO.BCM)
+#GPIO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BOARD)
+
 GPIO.setup(servopin, GPIO.OUT, initial=False)
 p = GPIO.PWM(servopin, 50)  # 50HZ
 p.start(0)

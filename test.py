@@ -1,8 +1,6 @@
 #!/usr/bin/python2
 # coding:utf8
 
-# 自动风扇控制程序，使用wiringPi的gpio命令来操作GPIO
-
 import os
 from time import sleep
 
