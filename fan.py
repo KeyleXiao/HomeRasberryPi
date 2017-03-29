@@ -22,7 +22,7 @@ while True:
 	# tmpFile.close()
 	# cpu_temp = round(float(cpu_temp_raw) / 1000, 1)
 
-	print(cpu_temp)
+	get_cpu_temperature()
 
 	# 如果温度大于45`C，就启动风扇
 	# if cpu_temp & gt;=45.0:
